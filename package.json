@@ -1,0 +1,36 @@
+{
+    "name": "react-node-cognito-sso",
+    "version": "1.0.0",
+    "type": "module",
+    "engines": {
+        "node": ">=22.0.0",
+        "npm": ">=10.9.2"
+    },
+    "scripts": {
+        "version:patch:client": "cd apps/client && yarn version:patch",
+        "version:patch:server": "cd apps/server && yarn version:patch",
+        "start:server": "cd apps/server && yarn start:dev",
+        "start:client": "cd apps/client && yarn install && yarn run dev"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yzhbankov/react-node-cognito-sso.git"
+    },
+    "workspaces": [
+        "apps/server",
+        "apps/client"
+    ],
+    "private": true,
+    "dependencies": {},
+    "devDependencies": {
+        "@types/node": "^22.13.10",
+        "babel-eslint": "^10.1.0",
+        "eslint": "^9.22.0",
+        "eslint-config-prettier": "^10.1.1",
+        "eslint-plugin-import": "^2.31.0",
+        "eslint-plugin-jsx-a11y": "^6.10.2",
+        "typescript": "^5.8.2",
+        "typescript-eslint": "^8.26.1"
+    },
+    "license": "UNLICENSED"
+}

@@ -1,0 +1,9 @@
+{
+  "serverPort": ["required", "positive_integer"],
+  "aws": ["required", {
+    "nested_object": {
+      "cognitoTokenSigningUrl": ["required", "string"],
+      "cognitoCacheTtl": ["required", "positive_integer"]
+    }
+  }]
+}

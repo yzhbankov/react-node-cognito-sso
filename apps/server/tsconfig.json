@@ -1,0 +1,13 @@
+{
+    "extends": "../../tsconfig.base.json",
+    "compilerOptions": {
+        "outDir": "./dist"
+        "paths": {
+            "@utils/api": ["./apps/server/lib/api/utils"],
+            "@utils": ["./apps/server/lib/utils"],
+            "@models": ["./apps/server/lib/models"],
+            "@logger": ["./apps/server/lib/api/logger"],
+            "@usecases": ["./apps/server/lib/usecases"]
+        }
+    }
+}

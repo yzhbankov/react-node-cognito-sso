@@ -1,0 +1,56 @@
+{
+    "name": "server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "apps/server/dist/app.js",
+    "engines": {
+        "node": ">=22.0.0",
+        "npm": ">=10.9.2"
+    },
+    "scripts": {
+        "start": "node dist/apps/server/app.js",
+        "start:dev": "tsx app.ts",
+        "build": "cross-env NODE_ENV=production tsc && tsc-alias && copyfiles -u 1 config/*.json dist/apps/server/config && cp .env* dist/apps/server",
+        "lint": "eslint . --ext .ts",
+        "lint:fix": "eslint --fix './**/*.ts'",
+        "reset": "yarn clean && yarn",
+        "clean": "rimraf dist && rimraf node_modules",
+        "prep-build": "",
+        "preversion": "",
+        "version": "git add .",
+        "postversion": "git push && git push --tags",
+        "version:patch": "yarn config set version-tag-prefix 'rs' && yarn config set version-git-message 'rest-server v%s' && yarn version --patch"
+    },
+    "license": "UNLICENSED",
+    "devDependencies": {
+        "@types/cookie-parser": "^1.4.8",
+        "@types/cors": "^2.8.17",
+        "@types/dotenv-defaults": "^2.0.4",
+        "@types/express": "^5.0.0",
+        "@types/jsonwebtoken": "^9.0.9",
+        "@types/jwk-to-pem": "^2.0.3",
+        "@types/node": "^22.13.10",
+        "@typescript-eslint/eslint-plugin": "^8.26.0",
+        "@typescript-eslint/parser": "^8.26.0",
+        "eslint": "^9.22.0",
+        "eslint-plugin-import": "^2.31.0",
+        "prettier": "^3.5.3",
+        "ts-node": "^10.9.2",
+        "tsc-alias": "^1.8.13",
+        "tsconfig-paths": "^4.2.0",
+        "tsx": "^4.19.3",
+        "typescript": "^5.8.2",
+        "typescript-eslint": "^8.26.0"
+    },
+    "dependencies": {
+        "axios": "^1.10.0",
+        "cors": "^2.8.5",
+        "cross-env": "^7.0.3",
+        "dotenv-defaults": "^5.0.2",
+        "express": "^4.21.2",
+        "jsonwebtoken": "^9.0.2",
+        "jwk-to-pem": "^2.0.7",
+        "livr": "^2.8.1",
+        "uuid": "^11.1.0"
+    }
+}

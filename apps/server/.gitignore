@@ -1,0 +1,6 @@
+testImages/
+images/
+node_modules/
+dist/
+/public/
+.env
