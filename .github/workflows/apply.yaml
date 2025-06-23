@@ -55,24 +55,26 @@ jobs:
           terraform_version: 1.4.5
 
       - name: Initialize Terraform
-        working-directory: ./dev-ops/terraform/
+        working-directory: ./dev-ops/cognito/
         run: terraform init -reconfigure -upgrade
 
       - name: Select Terraform workspace
-        working-directory: ./dev-ops/terraform/
+        working-directory: ./dev-ops/cognito/
         run: terraform workspace select -or-create ${environment}
 
       # Checks that all Terraform configuration files adhere to a canonical format
       - name: Terraform Format
-        working-directory: ./dev-ops/terraform/
+        working-directory: ./dev-ops/cognito/
         run: terraform fmt -check -recursive
 
       # Build or change infrastructure according to Terraform configuration files
       - name: Terraform Apply
         id: applystep
-        working-directory: ./dev-ops/terraform/
+        working-directory: ./dev-ops/cognito/
         continue-on-error: true
-        run: terraform apply -auto-approve -var-file="./env/${environment}.tfvars" -var="BOOKMARKS_DOMAIN=${{ vars.BOOKMARKS_DOMAIN }}" -var="GOOGLE_API_CLIENT_ID=${{ secrets.GOOGLE_API_CLIENT_ID }}" -var="GOOGLE_API_CLIENT_SECRET=${{ secrets.GOOGLE_API_CLIENT_SECRET }}" -var="JWT_SECRET=${{ secrets.JWT_SECRET }}" -input=false -no-color
+        env:
+          TF_VAR_SSH_PUBLIC_KEY: ${{ secrets.EC2_SSH_PUBLIC_KEY }}
+        run: terraform apply -auto-approve -var-file="./env/${environment}.tfvars" -input=false -no-color
 
       # If the apply was successful, post a comment with the applied output
       - name: Post RPP Plan and Apply to GitHub PR

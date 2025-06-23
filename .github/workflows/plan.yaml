@@ -55,7 +55,7 @@ jobs:
           terraform_version: 1.4.5
 
       - name: Initialize Terraform
-        working-directory: ./dev-ops/terraform/
+        working-directory: ./dev-ops/cognito/
         run: terraform init -reconfigure -upgrade
 
       - name: Select Terraform workspace
@@ -63,12 +63,12 @@ jobs:
 
       # Check that all Terraform configuration files adhere to a canonical format
       - name: Terraform Format
-        working-directory: ./dev-ops/terraform/
+        working-directory: ./dev-ops/cognito/
         run: terraform fmt -check -diff -recursive
 
       # Generate plan
       - name: Terraform Plan
-        working-directory: ./dev-ops/terraform/
+        working-directory: ./dev-ops/cognito/
         continue-on-error: true
         run: terraform plan -var-file="./env/${environment}.tfvars" -input=false -no-color && terraform show
 
