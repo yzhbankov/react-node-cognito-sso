@@ -1,34 +1,28 @@
 'use client';
+import React from 'react';
 import {AuthContextProps, useAuth} from 'react-oidc-context';
-import {Layout} from '@/components/Layout';
-import {Header} from '@/features/header/components';
-import {Navbar} from '@/features/navbar/components';
-import {Footer} from '@/features/footer/components';
-import React, {useEffect} from 'react';
-import ReactModal from 'react-modal';
-import {useUserAuth} from '@/features/auth/hooks';
 
 type AppContainerProps = {
     children: React.ReactNode
 }
 
 export default function AppContainer({ children }: AppContainerProps) {
-    const { noRole } = useUserAuth();
     const auth: AuthContextProps = useAuth();
 
-    useEffect(() => {
-        ReactModal.setAppElement('#__next'); // Safe to run only in the browser
-    }, []);
-
-    if (!auth || !auth.isAuthenticated || noRole) {
+    if (!auth || !auth.isAuthenticated) {
         return <>{children}</>
     }
     return (
-        <Layout
-            renderHeader={Header}
-            renderFooter={Footer}
-            renderNavbar={Navbar}
-            renderContent={() => children}
-        />
+        <div className="min-h-screen flex flex-col">
+            <div className="flex flex-1">
+                <div className="flex-shrink-0">
+                </div>
+                <div className="flex flex-col flex-1">
+                    <main className="flex-1 bg-gray-50 text-black">
+                        {children}
+                    </main>
+                </div>
+            </div>
+        </div>
     )
 }

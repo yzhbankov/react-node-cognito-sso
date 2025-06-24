@@ -5,6 +5,7 @@ const router = express.Router();
 const checkAccess = controllers.access.check;
 
 router.get('/auth/log_in', controllers.auth.login);
+router.get('/auth/log_out', controllers.auth.login);
 router.post('/auth/callback', controllers.auth.cb);
 router.post('/auth/refresh_token', controllers.auth.refresh);
 

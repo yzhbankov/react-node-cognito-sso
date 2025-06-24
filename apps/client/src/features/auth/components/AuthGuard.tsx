@@ -2,7 +2,6 @@
 import {useRouter} from 'next/navigation';
 import {useEffect} from 'react';
 import {routes} from '@/config';
-import {SpinningCircle} from '@/components/SpinningCircle';
 import {useUserAuth} from '@/features/auth/hooks';
 
 type AuthGuardProps = {
@@ -16,12 +15,12 @@ export function AuthGuard({ children }: AuthGuardProps) {
     useEffect(() => {
         if (!isLoading) {
             if (!isAuthenticated) {
-                router.push(routes.auth.login);
+                router.push(routes.login);
             }
         }
     }, [isLoading, isAuthenticated, router]);
 
-    if (isLoading && !isAuthenticated) return <SpinningCircle size={16} global />;
+    if (isLoading && !isAuthenticated) return null;
 
     return children;
 }

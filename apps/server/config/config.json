@@ -2,6 +2,10 @@
   "serverPort": "{{APP_SERVER_PORT}}",
   "aws": {
     "cognitoTokenSigningUrl": "{{APP_SERVER_COGNITO_TOKEN_SIGNING_URL}}",
-    "cognitoCacheTtl": "{{APP_SERVER_COGNITO_CACHE_TTL_MINUTES}}"
+    "clientId": "{{APP_SERVER_COGNITO_CLIENT_ID}}",
+    "clientSecret": "{{APP_SERVER_COGNITO_CLIENT_SECRET}}",
+    "redirectUri": "{{APP_SERVER_COGNITO_REDIRECT_URI}}",
+    "cognitoCacheTtl": "{{APP_SERVER_COGNITO_CACHE_TTL_MINUTES}}",
+    "domain": "{{APP_SERVER_COGNITO_DOMAIN}}"
   }
 }

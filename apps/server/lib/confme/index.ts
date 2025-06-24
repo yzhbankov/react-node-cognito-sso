@@ -33,6 +33,10 @@ export type ConfigType = {
     aws: {
         cognitoTokenSigningUrl: string;
         cognitoCacheTtl: number;
+        clientId: string
+        clientSecret: string
+        redirectUri: string
+        domain: string
     };
 };
 

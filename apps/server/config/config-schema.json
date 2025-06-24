@@ -3,6 +3,10 @@
   "aws": ["required", {
     "nested_object": {
       "cognitoTokenSigningUrl": ["required", "string"],
+      "clientId": ["required", "string"],
+      "clientSecret": ["required", "string"],
+      "redirectUri": ["required", "string"],
+      "domain": ["required", "string"],
       "cognitoCacheTtl": ["required", "positive_integer"]
     }
   }]
