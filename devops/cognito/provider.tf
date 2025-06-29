@@ -6,7 +6,7 @@ terraform {
     }
   }
   backend "s3" {
-    bucket = "amazon-cognito-web-server-terraform-state111"
+    bucket = "amazon-cognito-oauth-terraform-state"
     key    = "terraform.tfstate"
     region = "us-east-1"
   }

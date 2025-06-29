@@ -8,11 +8,7 @@
         "npm": ">=10.9.2"
     },
     "scripts": {
-        "start": "node dist/apps/server/app.js",
-        "start:dev": "tsx app.ts",
-        "build": "cross-env NODE_ENV=production tsc && tsc-alias && copyfiles -u 1 config/*.json dist/apps/server/config && cp .env* dist/apps/server",
-        "lint": "eslint . --ext .ts",
-        "lint:fix": "eslint --fix './**/*.ts'",
+        "start": "tsx app.ts",
         "reset": "yarn clean && yarn",
         "clean": "rimraf dist && rimraf node_modules",
         "prep-build": "",
@@ -44,13 +40,11 @@
     },
     "dependencies": {
         "axios": "^1.10.0",
-        "cors": "^2.8.5",
-        "cross-env": "^7.0.3",
-        "dotenv-defaults": "^5.0.2",
-        "express": "^4.21.2",
+        "express": "^5.1.0",
         "jsonwebtoken": "^9.0.2",
         "jwk-to-pem": "^2.0.7",
-        "livr": "^2.8.1",
-        "uuid": "^11.1.0"
+        "jwks-rsa": "^3.2.0",
+        "node-fetch": "^3.3.2",
+        "querystring": "^0.2.1"
     }
 }
