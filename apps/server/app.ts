@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import cors from 'cors';
 import axios from 'axios';
 import qs from 'querystring';
 import dotenv from 'dotenv';
@@ -8,12 +9,13 @@ dotenv.config();
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 const CLIENT_ID = process.env.CLIENT_ID || '';
 const CLIENT_SECRET = process.env.CLIENT_SECRET || '';
 const COGNITO_DOMAIN = process.env.COGNITO_DOMAIN || '';
-const REDIRECT_URI = 'http://localhost:8080/auth/callback';
-const LOGOUT_URI = 'http://localhost:8080/logged-out';
+const REDIRECT_URI = 'http://localhost:8080/';
+const LOGOUT_URI = 'http://localhost:8080/';
 const STATE_SECRET = 'secure-random-state-secret'; // should be random per session
 const TOKEN_ENDPOINT = `https://${COGNITO_DOMAIN}/oauth2/token`;
 
