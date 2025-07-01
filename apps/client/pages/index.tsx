@@ -1,14 +1,16 @@
-import { useEffect } from 'react';
-import { useRouter } from 'next/router';
+import {useEffect} from 'react';
+import {useRouter} from 'next/router';
+import config from '../config';
 
 export default function LoginPage() {
     const router = useRouter();
 
     useEffect(() => {
-        const { code, state } = router.query;
+        const code = router.query.code as string;
+        const state = router.query.state as string;
 
         if (code && state) {
-            fetch(`http://localhost:3000/auth/callback?code=${encodeURIComponent(code)}&state=${encodeURIComponent(state)}`)
+            fetch(`${config.serverURL}/auth/callback?code=${encodeURIComponent(code)}&state=${encodeURIComponent(state)}`)
                 .then(res => res.json())
                 .then(data => {
                     sessionStorage.setItem('access_token', data.access_token);
@@ -22,7 +24,7 @@ export default function LoginPage() {
 
     const handleLogin = async () => {
         try {
-            const res = await fetch('http://localhost:3000/auth/login');
+            const res = await fetch(`${config.serverURL}/auth/login`);
             const data = await res.json();
             if (data.loginUrl) {
                 window.location.href = data.loginUrl;

@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import {useEffect, useState} from 'react';
+import {useRouter} from 'next/router';
+import config from '../config';
 
 export default function HomePage() {
     const [token, setToken] = useState<string | null>(null);
@@ -18,7 +19,7 @@ export default function HomePage() {
 
     const fetchResource = async (accessToken: string) => {
         try {
-            const res = await fetch('http://localhost:3000/api/resource', {
+            const res = await fetch(`${config.serverURL}/api/resource`, {
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,
                 },
@@ -37,7 +38,7 @@ export default function HomePage() {
 
     const handleLogout = async () => {
         try {
-            const res = await fetch('http://localhost:3000/auth/logout', {
+            const res = await fetch(`${config.serverURL}/auth/logout`, {
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
