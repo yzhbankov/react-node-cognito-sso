@@ -7,10 +7,8 @@
         "npm": ">=10.9.2"
     },
     "scripts": {
-        "version:patch:client": "cd apps/client && yarn version:patch",
-        "version:patch:server": "cd apps/server && yarn version:patch",
-        "start:server": "cd apps/server && yarn start:dev",
-        "start:client": "cd apps/client && yarn install && yarn run dev"
+        "start:server:oauth2": "cd apps/oauth2/server && yarn start:dev",
+        "start:client:oauth2": "cd apps/oauth2/client && yarn install && yarn run dev"
     },
     "repository": {
         "type": "git",

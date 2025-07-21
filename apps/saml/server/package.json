@@ -2,7 +2,7 @@
     "name": "server",
     "version": "1.0.0",
     "description": "",
-    "main": "apps/server/dist/app.js",
+    "main": "apps/saml/server/dist/app.js",
     "engines": {
         "node": ">=22.0.0",
         "npm": ">=10.9.2"
@@ -42,10 +42,14 @@
         "axios": "^1.10.0",
         "cors": "^2.8.5",
         "express": "^5.1.0",
+        "express-session": "^1.18.2",
         "jsonwebtoken": "^9.0.2",
         "jwk-to-pem": "^2.0.7",
         "jwks-rsa": "^3.2.0",
         "node-fetch": "^3.3.2",
-        "querystring": "^0.2.1"
+        "passport": "^0.7.0",
+        "passport-saml": "^3.2.4",
+        "querystring": "^0.2.1",
+        "uuid": "^11.1.0"
     }
 }
