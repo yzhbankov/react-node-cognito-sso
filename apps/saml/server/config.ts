@@ -7,8 +7,8 @@ const SERVER_PORT = process.env.SERVER_PORT || 3000;
 const SAML_ENTRY_POINT = process.env.SAML_ENTRY_POINT || '';
 const SAML_ISSUER = process.env.SAML_ISSUER || '';
 const SAML_CALLBACK_URL = process.env.SAML_CALLBACK_URL || '';
-const SAML_LOGOUT_URL = process.env.SAML_LOGOUT_URL || '';
 const SAML_CERT_PATH = process.env.SAML_CERT_PATH || '';
+const SESSION_SECRET = process.env.SESSION_SECRET || 'your_session_secret';
 
 let SAML_CERT = '';
 if (SAML_CERT_PATH) {
@@ -24,6 +24,6 @@ export const config = {
     SAML_ENTRY_POINT,
     SAML_ISSUER,
     SAML_CALLBACK_URL,
-    SAML_LOGOUT_URL,
     SAML_CERT,
+    SESSION_SECRET,
 };
