@@ -14,9 +14,9 @@ app.use(middlewares.passportSession());
 app.use(middlewares.urlencode());
 app.use(middlewares.cors());
 
-app.get('/login', passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }));
+app.get('/api/auth/login', passport.authenticate('saml', { failureRedirect: '/', failureFlash: true }));
 
-app.get('/logout', (req, res) => {
+app.get('/api/auth/logout', (req, res) => {
     req.logout(() => {
         res.clearCookie('auth_token');
         req.session.destroy(() => {
@@ -25,7 +25,7 @@ app.get('/logout', (req, res) => {
     });
 });
 
-app.post('/auth/callback', passport.authenticate('saml', { failureRedirect: '/' }),
+app.post('/api/auth/callback', passport.authenticate('saml', { failureRedirect: '/' }),
     (req, res) => {
         const token = jwt.sign(req.user, config.JWT_SECRET, { expiresIn: '1h' });
         res.cookie('auth_token', token, { httpOnly: true });

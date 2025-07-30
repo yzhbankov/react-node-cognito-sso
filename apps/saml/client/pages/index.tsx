@@ -2,7 +2,7 @@ import config from '../config';
 
 export default function LoginPage() {
     const handleLogin = () => {
-        window.location.href = `${config.serverURL}/login`;
+        window.location.href = `${config.serverURL}/api/auth/login`;
     };
 
     return (

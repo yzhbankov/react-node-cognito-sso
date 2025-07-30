@@ -17,12 +17,12 @@ export default function Home() {
             })
             .then(data => setUser(data.user))
             .catch(() => {
-                window.location.href = `${config.serverURL}/login`;
+                window.location.href = `${config.serverURL}/api/auth/login`;
             });
     }, []);
 
     const handleLogout = () => {
-        window.location.href = `${config.serverURL}/logout`;
+        window.location.href = `${config.serverURL}/api/auth/logout`;
     };
 
     if (!user) return <div>Loading...</div>;
