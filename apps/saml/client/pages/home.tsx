@@ -1,8 +1,13 @@
 import { useEffect, useState } from 'react';
 import config from '../config';
 
+type User = {
+    name?: string;
+    email: string;
+};
+
 export default function Home() {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState<User | null>(null);
 
     useEffect(() => {
         fetch(`${config.serverURL}/api/protected`, { credentials: 'include' })
@@ -11,8 +16,7 @@ export default function Home() {
                 return res.json();
             })
             .then(data => setUser(data.user))
-            .catch((err) => {
-                console.error(err);
+            .catch(() => {
                 window.location.href = `${config.serverURL}/login`;
             });
     }, []);

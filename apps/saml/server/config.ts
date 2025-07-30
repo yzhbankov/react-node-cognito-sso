@@ -1,5 +1,5 @@
-import dotenv from 'dotenv';
 import fs from 'fs';
+import dotenv from 'dotenv';
 
 dotenv.config();
 
@@ -9,6 +9,9 @@ const SAML_ISSUER = process.env.SAML_ISSUER || '';
 const SAML_CALLBACK_URL = process.env.SAML_CALLBACK_URL || '';
 const SAML_CERT_PATH = process.env.SAML_CERT_PATH || '';
 const SESSION_SECRET = process.env.SESSION_SECRET || 'your_session_secret';
+const LOGOUT_REDIRECT_URL = process.env.LOGOUT_REDIRECT_URL || 'http://localhost:8080';
+const REDIRECT_AFTER_LOGIN_URL = process.env.REDIRECT_AFTER_LOGIN_URL || '/';
+const JWT_SECRET = process.env.JWT_SECRET || 'your_secret';
 
 let SAML_CERT = '';
 if (SAML_CERT_PATH) {
@@ -26,4 +29,7 @@ export const config = {
     SAML_CALLBACK_URL,
     SAML_CERT,
     SESSION_SECRET,
+    LOGOUT_REDIRECT_URL,
+    REDIRECT_AFTER_LOGIN_URL,
+    JWT_SECRET,
 };

@@ -2,7 +2,6 @@ import config from '../config';
 
 export default function LoginPage() {
     const handleLogin = () => {
-        // Redirect to the backend's SAML login route
         window.location.href = `${config.serverURL}/login`;
     };
 

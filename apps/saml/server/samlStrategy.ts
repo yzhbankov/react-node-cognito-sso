@@ -1,30 +1,35 @@
-const passport = require('passport');
-const SamlStrategy = require('passport-saml').Strategy;
-const { config } = require('./config');
+import passport from 'passport';
+import { Strategy as SamlStrategy, SamlConfig, Profile } from 'passport-saml';
+import { config } from './config';
 
-passport.serializeUser((user, done) => {
+type UserProfile = {
+    id: string;
+    email?: string;
+    name?: string;
+};
+
+passport.serializeUser((user: Express.User, done) => {
     done(null, user);
 });
-passport.deserializeUser((user, done) => {
+passport.deserializeUser((user: Express.User, done) => {
     done(null, user);
 });
 
-const samlStrategy = new SamlStrategy(
-    {
-        entryPoint: config.SAML_ENTRY_POINT,
-        issuer: config.SAML_ISSUER,
-        callbackUrl: config.SAML_CALLBACK_URL,
-        cert: config.SAML_CERT,
-        identifierFormat: null,
-    },
-    (profile, done) => {
-        console.log('SAML profile:', profile);
-        return done(null, {
-            id: profile.nameID,
-            email: profile.email || profile['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'],
-            name: profile['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'],
-        });
-    }
-);
+const samlOptions: SamlConfig = {
+    entryPoint: config.SAML_ENTRY_POINT,
+    issuer: config.SAML_ISSUER,
+    callbackUrl: config.SAML_CALLBACK_URL,
+    cert: config.SAML_CERT,
+    identifierFormat: null,
+};
+
+const samlStrategy = new SamlStrategy(samlOptions, (profile: Profile, done) => {
+    const user: UserProfile = {
+        id: profile.nameID || '',
+        email: profile.email || profile['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress'] as string,
+        name: profile['http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name'] as string,
+    };
+    return done(null, user);
+});
 
 passport.use(samlStrategy);
