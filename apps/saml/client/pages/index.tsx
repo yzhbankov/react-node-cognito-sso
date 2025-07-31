@@ -17,7 +17,7 @@ export default function LoginPage() {
                     cursor: 'pointer',
                 }}
             >
-                Login with SAML (Azure AD)
+                Login with SAML (Microsoft Entra ID)
             </button>
         </div>
     );
